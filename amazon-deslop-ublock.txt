@@ -1,0 +1,345 @@
+! Title: Amazon Deslop - Hide AI, Bloat, Greenwashing, Manipulative Marketing
+! Expires: 1 day
+! Description: Strip AI slop, bloat, and manipulative marketing from Amazon so you can read human reviews and compare prices in peace.
+! Homepage: https://github.com/clairekardas/amazon-deslop-ublock
+! Licence: https://raw.githubusercontent.com/clairekardas/amazon-deslop-ublock/main/LICENSE
+!
+! let me know if you need something changed or encounter an issue:
+! GitHub issues: https://github.com/clairekardas/amazon-deslop-ublock/issues
+! GitHub pull requests: https://github.com/clairekardas/amazon-deslop-ublock/pulls
+
+
+! -------------------------
+! navigation and overlays
+! -------------------------
+
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.aiv-container-flex:style(padding-right: 0 !important;)
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.aiv-container-limited:style(padding-right: 0 !important;)
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.dp-main-meta:style(padding-right: 0 !important;)
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.episode-list li p:style(padding-right: 0 !important;)
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###dv-product-details #rhf:style(padding-right: 0 !important;)
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###dv-product-details body > center:style(padding-right: 0 !important;)
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.pantry-shelf-header:style(right: 0 !important;)
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.airstream-pin-to-top:style(right: 0 !important;)
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.MusicCartBar:style(right: 0 !important;)
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.MusicCartBarFullCSS:style(right: 0 !important;)
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###gwm-window-container-wrapper
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###gwm-window-xl-container
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###gwm-Deck:style(max-width: none !important;)
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##div:matches-attr(class="/windowPaneDealBadgeContainer/i")
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##div[class*="windowPaneDealBadgeContainer"]
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##div[class*="asin-deal-badge"]
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###gwm-dashboard-container-wrapper
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.gwm-dashboard-container-wrapper
+
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##body:style(padding-right: 0 !important;)
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##body:style(min-width: 0 !important;)
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##span[data-action="share"]
+
+! cookies and advertising preferences banner
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###cos-banner
+
+! -------------------------
+! flyout, navbar, EWC declutter
+! EWC is their annoying sidebar that hides half of the webpage to push things like your shopping cart or ads
+! -------------------------
+
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.nav-swmslot
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###nav-main
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###nav-subnav
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###desktop-dp-ilm_feature_div_0
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.nav-progressive-subnav
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###nav-upnav:style(margin-right: 0 !important;)
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###nav-upnav-airy:style(margin-right: 0 !important;)
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###miniATFUDP:style(margin-right: 0 !important;)
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###nav-flyout-ewc
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.nav-ewc-arrow
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##html.nav-ewc-persistent-hover:style(padding-right: 0 !important;)
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##html.nav-ewc-compact-view:style(padding-right: 0 !important;)
+
+! attempt at aggressively hiding every pop-up and flyout that isn't to access your account or change language
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###nav-flyout-anchor > [class~="nav-flyout"]:not(#nav-flyout-accountList):not(#nav-flyout-icp):not(#nav-flyout-icp-footer-flyout)
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##[data-toaster-type="AIS_INGRESS"][data-toaster-slot="DEFAULT"]
+
+! keep only the first 11 account links and actual lists
+! let me know if this breaks something but i tested it on most amazon domains
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###nav-flyout-accountList #nav-al-your-account ul > li:nth-child(n+12)
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###nav-flyout-accountList #nav-al-your-account ul > .nav-divider
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###nav-flyout-accountList #nav-al-wishlist > ul > li:nth-child(n+3)
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.nav-flyout-sidePanel
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.nav-al-profile
+
+! region flags
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##[class*="nav-flag"]
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##[class*="flyout-flag"]
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##[class*="icp-flag"]
+
+! -------------------------
+! product pages, content and cart styling
+! -------------------------
+
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###above-dp-container:style(margin-left: -18px !important; margin-right: -18px !important; margin-top: -20px !important; margin-bottom: -45px !important; padding-bottom: 35px !important;)
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.vse-vwdp-video-block-wrapper:remove()
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.nile-inline-btf_feature_div
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.mvt-ac-badge-wrapper
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###premiumBylineInfo_feature_div
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###heimdallShoppingCxFeedback_feature_div
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##div[id*="socialProofing"]:remove()
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##[data-cy="price-recipe"] .a-size-base.a-color-secondary
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.a-price.a-text-price[data-a-strike="true"][data-a-color="secondary"]
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##[data-cy="price-recipe"] .a-badge[data-a-badge-type="deal"]:style(background: #e0e0e0 !important; color: #555555 !important; box-shadow: none !important; border: 1px solid #cccccc !important; font-size: 10px !important; font-weight: 400 !important; text-transform: none !important; filter: grayscale(1) brightness(0.9) !important; opacity: 0.4 !important;)
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.sc-item-price-block .sc-deals-badge-messaging-rio-red-font:style(background: transparent !important; padding: 0 !important; border-radius: 0 !important; color: #555555 !important; font-weight: 400 !important;)
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.sc-item-price-block .savings-badge-messaging-background:style(background: transparent !important; padding: 0 !important; border-radius: 0 !important; color: #555555 !important; box-shadow: none !important;)
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.sc-item-price-block .apex-savings-percent-badge-enabled:style(color: #555555 !important; font-weight: 400 !important;)
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##[data-cy="price-recipe"] .a-badge[data-a-badge-type="deal"] span[data-a-badge-color]:style(background: transparent !important; color: #555555 !important; text-shadow: none !important;)
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###paymentOptions_PriceblockMessaging_feature_div
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.cpf-features-badge
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.cpf-features-container-side-sheet
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###sc-saved-cart-container [class*="mission" i]
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.sc-saved-cart-container [class*="mission" i]
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.sc-unified-promotion-message-label.sc-unified-promotion-message-badge:style(background: transparent !important; padding: 0 !important; border-radius: 0 !important; box-shadow: none !important;)
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.a-section.rio-badge-label.rio-badge-style-best_seller.rio-badge-size-desktop:style(background: transparent !important; padding: 0 !important; border-radius: 0 !important; box-shadow: none !important;)
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.a-size-medium.-a-colorsuccess.primary-availability-message:style(color: #555555 !important; font-weight: 400 !important;)
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.a-size-small.a-color-success.sc-product-availability
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##span#ftCountdown.ftCountdownClass:style(color: inherit !important;)
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##label[id^="greenBadge"]:upward(div)
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.sc-grid-view .sc-list-body .sc-list-item:style(margin: -12px !important;)
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##[class*="status-badge-container"]
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.rio-badge-component
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.savingPriceOverride:style(color: inherit !important;)
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###dealBadgefeaturediv .dealBadge:style(background-color: transparent !important;)
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###dealBadgefeaturediv #dealBadgeSupportingText:style(color: inherit !important;)
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###dealBadge_feature_div #dealBadgeSupportingText:style(color: inherit !important;)
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###dealBadge_feature_div .dealBadge:style(background-color: transparent !important;)
+
+! these might seem to be used on some international variants
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###merchByAmazonBranding_feature_div
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###b2bUpsell_feature_div
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###vsxoffers_feature_div
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###loyaltyRewardPointsEarnings_feature_div
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###freebies_feature_div
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###iconfarmv2_feature_div
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###pbxFreebies_feature_div
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###alternativeOfferEligibilityMessaging_feature_div
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###deepCheckPromise_feature_div
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###businessPricing_feature_div
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###customerReviewsAttribute_feature_div
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###tellAmazon_feature_div
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###certifiedRefurbishedVersion_feature_div
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###recommendations_feature_div
+
+! all frequently bought together instances i could find
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##div[id^="CardInstance"]:has(h2#similarities-product-bundle-widget-title):style(display: none !important;)
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##div[id^="CardInstance"][data-card-metrics-id*="thematic-bundle" i]:style(display: none !important;)
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##[data-card-metrics-id*="carousel" i]:style(display: none !important;)
+
+! we do not want to help gather information on other retailer's prices and support price gouging
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##div.a-section:has([id*="pricingFeedbackDiv" i])
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##div.a-section:has(.pricingFeedbackDiv)
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##a#productDetails + hr.a-divider-normal:remove()
+
+! zeitgeist / refurbished / climate pledge / exclusive badges
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##[id^="zeitgeistBadge_"]
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##[id^="refurbishedBadge_"]
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##[id^="climatePledgeFriendly_"]
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##[id^="amazonExclusiveBadge_"]
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##[id^="delightPricingBadgefeaturediv_"]
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##[id^="dealBadgefeaturediv_"]
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##[data-cy="certification-recipe"]
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###productNostosBadge_feature_div
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###socialFabric_feature_div
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###amazonCertifiedBadgeCommon_feature_div
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###smartHomeWidget_feature_div
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###renewedProgramDescriptionAtf_feature_div
+
+! manipulative price colors
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##*.a-color-price:style(color: inherit !important;)
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##*.a-badge-color:style(color: inherit !important;)
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##*.-a-colorsuccess:style(color: inherit !important;)
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##*.a-color-state:style(color: inherit !important;)
+
+! -------------------------
+! vine badge and review mods
+! -------------------------
+
+! style vine badge as warning
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##[data-hook="vine-review-badge"]:style(display: inline-flex !important; align-items: center !important; justify-content: center !important; text-align: center !important; vertical-align: middle !important; box-sizing: border-box !important; width: auto !important; min-width: 0 !important; max-width: 100% !important; height: auto !important; min-height: 0 !important; padding: 2px 5px !important; line-height: 16px !important; white-space: normal !important; font-size: 0 !important; color: #b00020 !important; background: #fff0f0 !important; border: 1px solid #b00020 !important; border-radius: 3px !important;)
+
+! add vine warning text
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##[data-hook="vine-review-badge"]::before:style(content: "VINE: Received free product – verify claims independently" !important; display: block !important; width: auto !important; height: auto !important; margin: 0 !important; text-align: center !important; font-size: 12px !important; line-height: 16px !important; color: #b00020 !important; white-space: normal !important;)
+
+! remove customer-review-owned cards only when they are inside sponsored or recommendation widgets and "x other people bought" in review block (gen why is this a thing)
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##[data-csa-c-owner="CustomerReviews"]
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##[data-cy="reviews-block"] > .a-row.a-size-base
+
+! -------------------------
+! status & footer
+! -------------------------
+
+! hide links that do not have any business being in a footer
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.navFooterVerticalColumn .nav_a:not([href*="/gp/help/"]):not([href*="two-click"]):not([href*="order-history"]):not([href*="aboutamazon"]):not([href*="/-/en/"]):not([href*="jobs"]):not([href*="blog"]):not([href*="returns"]):not([href*="manage"]):not([href*="cancel"]):not([href*="legal"])
+
+! keep only first and last columns (above rule should nuke their contents anyways)
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.navFooterVerticalColumn .navFooterLinkCol:not(:first-child):not(:last-child):not(:nth-child(2))
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.navFooterVerticalRow.navAccessibility:has(.navFooterLinkCol.navAccessibility:has-text(/Money|Geld|Dinero|Argent|Soldi/i)) .navFooterColSpacerInner.navAccessibility
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.navFooterLine.navFooterLinkLine.navFooterDescLine
+
+! status bar for our script running
+! my approach here is lowkey cooked, open to better implementations
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###navBackToTop::before:style(content: "Amazon Deslop is active and working!" !important; display: block !important; order: 1 !important; flex: 0 0 50px !important; width: 100% !important; height: 50px !important; box-sizing: border-box !important; padding: 12px 8px !important; color: #ffffff !important; background: #1f7a1f !important; font-size: 13px !important; font-weight: 700 !important; line-height: 18px !important; text-align: center !important;)
+
+
+! -------------------------
+! self-advertising such as kindle BS
+! -------------------------
+
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###hqpWrapper
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###heroQuickPromoContainer
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###tellAFriendBox_feature_div
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###primeDPUpsellStaticContainerNPA
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###nile-inline-btf_feature_div
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###px-profile_feature_div
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###pldn-deep-link
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.sparkle-container
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.mo-wp
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###sp-cc-wrapper
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###sp-cc
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.mn-nav-stripe
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##[id^="renderable-id--"]:has(.mn-nav-stripe)
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##[class*="mars-gen"]
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.content-grid-wrapper[class*="devices"]
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.content-grid-wrapper[class*="mako"]
+
+
+! -------------------------
+! rufus AI
+! a handful of these are kindly provided by the userscript project "amazon enhanced" by aspen1382020 under MIT license: https://greasyfork.org/en/users/1177387-138-aspen
+! -------------------------
+
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.rufus-docked-ewc-compact-view-right
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.rufus-docked-ewc-compact-view-left
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##nav-flyout-rufus
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.rufus-panel-container
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.rufus-view-filler
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.rufus-conversation-container
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.rufus-container-peek-view
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.nav-rufus-content
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.rufus-panel-closed-to-peek
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.overflow-menu-option-container-webapp
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.rufus-overflow-menu-option-container-auto-minimize
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.rufus-overflow-menu-option-container-faq
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.conversation-turn-container.rufus-initial-stream-container
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.rufus-teaser-cx-nav-tooltip
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.rufus-sections-container
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##nav-rufus-disc-txt
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.rufus-error-container-inner
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.rufus-error-text
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.rufus-conversation-branding-update
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.rufus-container
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.rufus-container-default-text-style
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##rufus-container
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.rufus-container-main-view
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.rufus-error-container
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##rufus-error-container
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.rufus-asin-faceout-footer
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.rufus-loading-message-template
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.rufus-text-subsections-with-avatar-branding-update
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.rufus-loading-messages
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.rufus-fade-in
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.rufus-visibility-hidden
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.rufus-remove-section
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##[class*="rufus" i]
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##[id*="rufus" i]
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##[data-csa-c-content-id*="rufus" i]
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##[data-csa-c-slot-id*="rufus" i]
+
+! ask AI
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##*:matches-attr(class="/(?:ask_feature_div)/i")
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##*:matches-attr(id="/(?:ask_feature_div)/i")
+
+! -------------------------
+! sponsored content
+! a handful of these are kindly provided by the userscript project "amazon enhanced" by aspen1382020 under MIT license: https://greasyfork.org/en/users/1177387-138-aspen
+! -------------------------
+
+! remove sponsored products
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##*:matches-attr(id="/sponsoredproducts/i")
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##*:matches-attr(class="/sponsoredproducts/i")
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##div[id*="sponsoredProducts" i]
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##div[id^="dp-ads-"]
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##[id*="sponsoredproducts" i]
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##[data-component-type="sp-sponsored-result"]:upward([data-asin])
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.spdesktopsponsoredlabel:upward(.a-carousel-container)
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.adPlacements
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##[data-cel-widget="adplacements"]
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.AdHolder
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.spSponsored
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##[data-video-type="sponsored"]
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##[id^="advertising-"]
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##[data-component-type="sp-sponsored-result"]
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.dynamic-sponsored-behaviour-container:upward(.a-carousel-container)
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##[id="discovery-and-inspiration_feature_div"]
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##[data-feature-name="sims-discoveryAndInspiration"]
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##[id="sponsoredProducts2_feature_div"]
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##[id="sponsoredProducts2-2_feature_div"]
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##[id="sims-themis-sponsored-products-2_feature_div"]
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##[id="dp-ads-center-promo-dramabot_feature_div"]
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##[data-cel-widget="dp-ads-center-promo-feature-div"]
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##[id="percolate-ui-ilm"]
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##[data-cel-widget="desktop-dp-atf-ad-placements"]
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##[data-id="AmazonLiveDram"]
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.s-result-list.s-search-results > div:not([data-component-type="s-search-result"]):not(:has(.s-pagination-strip))
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##[data-cel-widget^="adplacements:"]
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##[data-cel-widget="dp-ads-center-promofeaturediv"]
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##[data-cel-widget="desktop-dp-atfad-placements"]
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.dynamic-sponsored-behaviour-container
+
+! -------------------------
+! optional: aggressive removals
+! change if core features are broken, missing or you simply wish to do so
+! -------------------------
+
+! empty the entire homepage (mostly ads and algorithmic recommendations)
+! /^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##:matches-path(/^\/(?:ref=.*)?(?:\?.*)?$/) #pageContent:remove()
+
+! suggestion deck on the homepage
+! /^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###gwm-Deck
+
+! recommendation containers
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##div[id^="rhf"]
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##[data-feature-name="sims-simsContainer"]
+
+! buy again tab and list
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##li[id^="sc-buy-it-again"]
+
+! about the brand, about the manufacturer content on product page
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###aplusBrandStory_feature_div
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###aplus_feature_div
+
+! account owner name being put everywhere
+! i know my own name, thank you
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###nav-link-accountList-nav-line-1
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###glow-ingress-line1
+
+! hides secondary descriptions in account option boxes and app card
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##div[data-card-identifier][class*="ya-card--rich"] .a-color-secondary
+
+! postal code shown on nav
+! if postal code is part of city, this won't work sadly
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###contextualIngressPtLabel_deliveryShortLine > span:first-child:style(display: none !important;)
+
+! disabled: alternatively the whole city and postal code can be removed from the nav
+! /^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###glow-ingress-line2:style(display: none !important;)
+
+! disabled: this would hide all card instances, worth trying to go extreme minimalist
+! /^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##div[id^="CardInstance"]
+
+! disabled: hiding prime logo if a product has prime shipment option. serves a purpose
+! /^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.a-row.a-color-base.udm-badge-block:has(.a-icon-prime)
+! /^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/###deliveryPriceBadging_feature_div
+
+! disabled: hide gift-option container
+! /^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/##.sc-gift-option-container
+
+! fix: restore customer reviews while keeping AI summaries hidden
+/^(www\.)?amazon\.[a-z]{2,}(?:\.[a-z]{2,})?$/#@##customer-reviews_feature_div
